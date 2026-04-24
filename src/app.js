@@ -9,7 +9,16 @@ const orderRoutes = require("./routes/orderRoutes");
 const app = express();
 
 app.use(helmet());
-app.use(cors());
+
+// Allow all origins for now — restrict after going live
+app.use(
+  cors({
+    origin: "*",
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization"],
+  }),
+);
+
 app.use(morgan("dev"));
 app.use(express.json());
 
